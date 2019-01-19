@@ -16,6 +16,8 @@ h4,
 h5,
 h6 {
   font-family: $font-heading;
+  // This should be coming from theme settings
+  color: #003366;
 }
 
 body,
