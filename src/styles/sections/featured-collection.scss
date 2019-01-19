@@ -5,7 +5,7 @@
  *
  */
 .featured-collection {
-  margin: 0 auto;
+  margin: 30px auto;
   max-width: $grid-max-width;
 
   .container {
@@ -47,7 +47,7 @@
     }
 
     .featured-collection__title {
-      margin-top: 59px;
+      margin-top: 30px;
       margin-bottom: 0px;
     }
 
@@ -56,5 +56,9 @@
       margin-bottom: 69px;
       padding: 0 5px;
     }
+  }
+
+  .featured-collection__footer {
+    margin: 15px auto 30px;
   }
 }

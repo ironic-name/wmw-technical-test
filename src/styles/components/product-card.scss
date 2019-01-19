@@ -18,6 +18,26 @@
       min-width: 100%;
     }
 
+    .product-card__roundel-container {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      display: none;
+
+      @include media-query($medium-up) {
+        display: block;
+      }
+
+      .roundel {
+        padding: 4px 14px 6px;
+        color: #fff;
+        background: #003366;
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: bold;
+      }
+    }
+
     .product-card__button-container {
       position: absolute;
       bottom: 18px;

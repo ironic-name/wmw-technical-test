@@ -17,6 +17,19 @@
       {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
     {% endif %}
 
+    {% comment %} 
+      This should be done using the product/variant being displayed's compare_at_price. 
+      
+      However, since the product in the design with a lower price isn't marked as being on sale in any way, 
+      I'll be just adding a roundel to the 4th product. This should be easily adaptable.
+    {% endcomment %}
+
+    {%- if forloop.index == 4 -%}
+      <div class="product-card__roundel-container">
+        <span class="roundel">Sale</span>
+      </div>
+    {%- endif -%}
+
     <div class="product-card__button-container">
       <span js-ajax-cart="addToCart" data-variant-id="{{ current_variant.id }}" data-quantity="1" class="button secondary">Add to cart</span>
     </div>
