@@ -8,4 +8,26 @@
   text-decoration: none;
   user-select: none;
   appearance: none;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: bold;
+  padding: 12px 36px;
+  
+  @include media-query($medium-up) {
+    font-size: 18px;
+    line-height: 23px;
+    padding: 15px 54px;
+  }
+}
+
+.primary {
+  background: #003366;
+  color: #fff;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.secondary {
+  background: #fff;
+  color: #003366;
 }
