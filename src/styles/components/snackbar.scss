@@ -1,0 +1,30 @@
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  max-width: 280px;
+  background-color: #003366;
+  color: #fff;
+  text-align: right;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  right: $grid-gutter;
+  bottom: $grid-gutter;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 300;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12),
+    0 2px 4px 0 rgba(0, 0, 0, 0.08);
+
+  @include media-query($medium-up) {
+    max-width: 500px;
+    right: $grid-gutter-large;
+    bottom: $grid-gutter-large;
+  }
+
+  &.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+}

@@ -6,7 +6,10 @@
  *
  * @namespace featuredCollection
  */
-import {register} from '@shopify/theme-sections';
+import {
+  register
+} from '@shopify/theme-sections';
+import $ from 'jquery';
 
 /**
  * Featured collection constructor
@@ -18,14 +21,45 @@ register('featured-collection', {
 
   init() {
     window.console.log('Initialising featured collection section');
-  },
 
-  publicMethod() {
-    // Custom public section method
+    this._addEventListeners();
   },
-
-  _privateMethod() {
-    // Custom private section method
+  _addEventListeners() {
+    $('span[js-ajax-cart]').on('click', (e) => {
+      const $this = $(e);
+      const action = $this.attr('js-ajax-cart');
+      const quantity = $this.attr('data-quantity');
+      const variantId = $this.attr('data-variant-id');
+      switch (action) {
+        case 'addToCart':
+          this._ajaxAddProductToCart(quantity, variantId, (lineItem) => {
+            // eslint-disable-next-line no-undef
+            console.log('addedToCart', lineItem);
+          });
+          break;
+        default:
+          break;
+      }
+    });
+  },
+  _ajaxAddProductToCart(quantity, variantId, callback) {
+    const params = {
+      type: 'POST',
+      url: '/cart/add.js',
+      data: `quantity=${quantity}&id=${variantId}`,
+      dataType: 'json',
+      success: (lineItem) => {
+        if ((typeof callback) === 'function') {
+          callback(lineItem);
+        } else {
+          Shopify.onItemAdded(lineItem);
+        }
+      },
+      error: (XMLHttpRequest, textStatus) => {
+        Shopify.onError(XMLHttpRequest, textStatus);
+      },
+    };
+    $.ajax(params);
   },
 
   // Shortcut function called when a section is loaded via 'sections.load()' or by the Theme Editor 'shopify:section:load' event.
