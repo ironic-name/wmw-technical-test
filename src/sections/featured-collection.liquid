@@ -7,33 +7,29 @@
 {% endcomment %}
 
 <section class="featured-collection" data-section-id="{{ section.id }}" data-section-type="featured-collection">
-  {%- assign collection = collections[section.settings.collection] -%}
-
-  <h2>{{ collection.title | escape }}</h2>
-
-  <p>{{ collection.description }}</p>
-
-  {% for product in collection.products limit: 6 %}
-    {% assign current_variant = product.selected_or_first_available_variant %}
+  <div class="container">
+    {%- assign collection = collections[section.settings.collection] -%}
+    <div class="featured-collection__text-content">
+      <h1 class="featured-collection__title">{{ collection.title | escape }}</h2>
+      <p class="featured-collection__subtitle">{{ collection.description }}</p>
+    </div>
   
-    <a href="{{ product.url | within: collection }}">
-      <div>
-        {% if product.featured_image != blank %}
-          {{ product.featured_image | img_url: 'large' | img_tag }}
-        {% endif %}
-        
-        <span js-ajax-cart="addToCart" data-variant-id="{{ current_variant.id }}" data-quantity="1">Add to cart</span>
-      </div>
-
-      <div>
-        <p>{{ product.title | escape }}</p>
-
-        <span>
-          {% include 'product-price' %}
-        </span>
-      </div>
-    </a>
-  {% endfor %}
+    {% for product in collection.products limit: 4 %}
+      {%- include 'product-card' with
+        product: product
+      -%}
+    {% else %}
+      {% for i in (1..4) %}
+        <a href="#" class="featured-collection-item">
+          {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+          {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+  
+          <p>{{ 'homepage.onboarding.product_title' | t }}</p>
+          <p>{{ 1999 | money }}</p>
+        </a>
+      {% endfor %}
+    {% endfor %}
+  </div>
 </section>
 
 {% schema %}

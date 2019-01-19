@@ -1,0 +1,32 @@
+{% comment %} 
+  Accepts:
+    - product: {Product} The product to be shown in the card
+{% endcomment %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+<a href="{{ product.url | within: collection }}" class="product-card">
+  <div class="product-card__image-container">
+    {% if product.featured_image != blank %}
+      <div class="product-card__image">
+        {% include 'responsive-image' with
+          image: product.featured_image,
+          max_width: 480,
+          max_height: 480
+        %}
+      </div>
+    {% else %}
+      {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+    {% endif %}
+
+    <div class="product-card__button-container">
+      <span js-ajax-cart="addToCart" data-variant-id="{{ current_variant.id }}" data-quantity="1" class="button secondary">Add to cart</span>
+    </div>
+  </div>
+
+  <div>
+    <p>{{ product.title | escape }}</p>
+
+    <span>
+      {% include 'product-price' %}
+    </span>
+  </div>
+</a>

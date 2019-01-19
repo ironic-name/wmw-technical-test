@@ -1,0 +1,34 @@
+.product-card {
+  height: 100%;
+  flex: 1 1 percentage(1 / 2);
+  padding-left: $grid-gutter/2;
+  padding-right: $grid-gutter/2;
+
+  @include media-query($medium-up) {
+    flex: 1 1 percentage(1 / 4);
+    padding-left: $grid-gutter-large/2;
+    padding-right: $grid-gutter-large/2;
+  }
+
+  .product-card__image-container {
+    position: relative;
+
+    .product-card__image {
+      min-width: 100%;
+    }
+
+    .product-card__button-container {
+      position: absolute;
+      bottom: 18px;
+      left: 18px;
+      right: 18px;
+
+      .button {
+        padding: unset;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        width: 100%;
+      }
+    }
+  }
+}

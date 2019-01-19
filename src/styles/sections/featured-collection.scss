@@ -5,5 +5,42 @@
  *
  */
 .featured-collection {
-  
+  margin: 0 auto;
+  max-width: $grid-max-width;
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: $grid-gutter/2;
+    margin-right: $grid-gutter/2;
+
+    @include media-query($medium-up) {
+      margin-left: -($grid-gutter-large/2);
+      margin-right: -($grid-gutter-large/2);
+    }
+  }
+
+  .featured-collection__text-content {
+    flex-basis: 100%;
+    text-align: center;
+    padding-left: $grid-gutter/2;
+    padding-right: $grid-gutter/2;
+
+    @include media-query($medium-up) {
+      padding-left: $grid-gutter-large/2;
+      padding-right: $grid-gutter-large/2;
+    }
+
+    .featured-collection__title,
+    .featured-collection__subtitle {
+      @include media-query($medium-up) {
+        max-width: percentage(1 / 2);
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .featured-collection__title {}
+  }
 }
