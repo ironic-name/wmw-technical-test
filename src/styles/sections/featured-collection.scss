@@ -14,8 +14,13 @@
     justify-content: center;
     margin-left: $grid-gutter/2;
     margin-right: $grid-gutter/2;
-
+    
     @include media-query($medium-up) {
+      margin-left: $grid-gutter-large/2;
+      margin-right: $grid-gutter-large/2;
+    }
+
+    @include media-query($widescreen) {
       margin-left: -($grid-gutter-large/2);
       margin-right: -($grid-gutter-large/2);
     }
@@ -41,6 +46,15 @@
       }
     }
 
-    .featured-collection__title {}
+    .featured-collection__title {
+      margin-top: 59px;
+      margin-bottom: 0px;
+    }
+
+    .featured-collection__subtitle {
+      margin-top: 19px;
+      margin-bottom: 69px;
+      padding: 0 5px;
+    }
   }
 }

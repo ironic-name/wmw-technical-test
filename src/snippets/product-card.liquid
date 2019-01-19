@@ -23,9 +23,9 @@
   </div>
 
   <div>
-    <p>{{ product.title | escape }}</p>
+    <p class="product-card__product-title">{{ product.title | escape }}</p>
 
-    <span>
+    <span class="product-card__product-price">
       {% include 'product-price' %}
     </span>
   </div>
